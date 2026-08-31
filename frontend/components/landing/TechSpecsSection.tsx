@@ -3,14 +3,7 @@
 import { ProgressMetricCard } from "@/components/shared/ProgressMetricCard";
 import { Reveal } from "@/components/shared/Reveal";
 import { SectionShell } from "@/components/shared/SectionShell";
-import {
-  certificateMeta,
-  hardwareCard,
-  performanceMetrics,
-  softwareCard,
-} from "@/lib/data/features";
-import { ShieldCheck } from "lucide-react";
-import { motion, useReducedMotion } from "motion/react";
+import { certificateMeta, performanceMetrics } from "@/lib/data/features";
 
 const cardOffsets = [
   "md:ml-0",
@@ -20,8 +13,6 @@ const cardOffsets = [
 ];
 
 export function TechSpecsSection() {
-  const reduce = useReducedMotion();
-
   return (
     <SectionShell id="performance" background="white">
       <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
@@ -61,64 +52,6 @@ export function TechSpecsSection() {
           <ProgressMetricCard key={metric.label} {...metric} delay={i * 0.08} className="w-full" />
         ))}
       </div>
-
-      <motion.div
-        initial={reduce ? false : { opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ delay: 0.2, duration: 0.55 }}
-        className="mt-16 grid gap-6 md:grid-cols-2 md:gap-8"
-      >
-        <div className="rounded-card border border-gray-200 bg-brand-surface p-6 md:p-8">
-          <h3 className="text-lg font-semibold text-brand-charcoal">{hardwareCard.title}</h3>
-          <p className="mt-3 text-sm leading-relaxed text-brand-body">{hardwareCard.intro}</p>
-          <ul className="mt-5 space-y-2 font-mono text-sm text-brand-body">
-            {hardwareCard.items.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-          <p className="mt-5 text-sm font-semibold text-brand-teal">{hardwareCard.footer}</p>
-        </div>
-
-        <div className="rounded-card border border-gray-200 bg-brand-surface p-6 md:p-8">
-          <h3 className="text-lg font-semibold text-brand-charcoal">{softwareCard.title}</h3>
-          <p className="mt-3 text-sm leading-relaxed text-brand-body">{softwareCard.intro}</p>
-          <ul className="mt-5 space-y-2 font-mono text-sm text-brand-body">
-            {softwareCard.items.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-          <p className="mt-5 text-sm font-semibold text-brand-teal">{softwareCard.footer}</p>
-        </div>
-      </motion.div>
-
-      <Reveal delay={0.25}>
-        <div className="mt-10 rounded-card border border-gray-200 bg-white p-6 shadow-card md:p-8">
-          <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-            <div>
-              <p className="flex items-center gap-2 text-sm font-semibold text-brand-charcoal">
-                <ShieldCheck className="h-4 w-4 text-brand-teal" />
-                Cryptographically Signed
-              </p>
-              <p className="mt-2 font-mono text-xs text-brand-muted">
-                SHA-256: {certificateMeta.hash}
-              </p>
-              <p className="mt-1 text-xs text-brand-muted">
-                Generated: {certificateMeta.generated} · {certificateMeta.devices} devices ·{" "}
-                {certificateMeta.keywords} keywords · {certificateMeta.days}d
-              </p>
-            </div>
-            <div className="flex flex-col gap-3 sm:flex-row">
-              <button type="button" className="btn-primary text-sm">
-                Download Certificate PDF
-              </button>
-              <button type="button" className="btn-ghost text-sm">
-                Verify on GitHub
-              </button>
-            </div>
-          </div>
-        </div>
-      </Reveal>
     </SectionShell>
   );
 }

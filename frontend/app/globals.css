@@ -10,6 +10,21 @@
     --input: 220 13% 91%;
     --ring: 170 100% 33%;
     --radius: 0.5rem;
+    --section-space: 5rem;
+    --section-space-hero-top: 2rem;
+  }
+
+  @media (min-width: 768px) {
+    :root {
+      --section-space: 7rem;
+      --section-space-hero-top: 3rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    :root {
+      --section-space: 8rem;
+    }
   }
 
   * {
@@ -35,7 +50,29 @@
   }
 
   .section-pad {
-    @apply py-20 md:py-28 lg:py-32;
+    padding-top: var(--section-space);
+    padding-bottom: var(--section-space);
+  }
+
+  .section-pad-hero {
+    padding-top: var(--section-space-hero-top);
+    padding-bottom: var(--section-space);
+  }
+
+  .section-stack {
+    margin-top: 2.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .section-stack {
+      margin-top: 3rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .section-stack {
+      margin-top: 3.5rem;
+    }
   }
 
   .card-surface {

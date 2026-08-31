@@ -5,7 +5,7 @@ import { SectionShell } from "@/components/shared/SectionShell";
 
 export function MetricsStrip() {
   return (
-    <SectionShell background="surface" className="!py-16 md:!py-20">
+    <SectionShell background="surface">
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <Reveal>
           <MetricCard

@@ -200,11 +200,11 @@ export function DeploymentJourney() {
   const started = Boolean(inView);
 
   return (
-    <section id="deploy" ref={ref} className="relative bg-white py-20 md:py-28 lg:py-32">
+    <SectionShell id="deploy" ref={ref} className="relative overflow-hidden">
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <BackgroundSchematic />
       </div>
-      <div className="page-container relative">
+      <div className="relative">
         <motion.div
           className="mx-auto max-w-2xl text-center"
           initial={{ opacity: 0, y: 20 }}
@@ -275,6 +275,6 @@ export function DeploymentJourney() {
           </div>
         </motion.div>
       </div>
-    </section>
+    </SectionShell>
   );
 }

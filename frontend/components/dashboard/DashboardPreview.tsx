@@ -65,7 +65,7 @@ export function DashboardPreview({ compact = false }: { compact?: boolean }) {
 
       <div
         className={`overflow-hidden rounded-2xl border border-gray-800 bg-brand-charcoal p-2 shadow-float ${
-          compact ? "" : "rotate-1 md:rotate-[1.5deg]"
+          compact ? "" : "rotate-1 md:rotate-[1deg]"
         }`}
       >
         <div className="rounded-xl bg-white p-4 md:p-6">

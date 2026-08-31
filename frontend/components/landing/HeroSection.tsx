@@ -12,7 +12,7 @@ export function HeroSection() {
   const reduce = useReducedMotion();
 
   return (
-    <section className="relative overflow-hidden bg-white pt-8 md:pt-12">
+    <section className="section-pad-hero relative overflow-x-hidden bg-white">
       <div className="page-container grid min-h-[85dvh] items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-8">
         <div className="relative z-10">
           <motion.span
@@ -47,8 +47,8 @@ export function HeroSection() {
           </Reveal>
         </div>
 
-        <div className="relative hidden md:block">
-          <div className="pointer-events-none absolute inset-0">
+        <div className="relative hidden overflow-visible py-8 pl-2 pr-6 md:block md:py-10 md:pl-4 md:pr-8">
+          <div className="pointer-events-none absolute inset-0 overflow-visible">
             {heroFloatingMetrics.map((metric, i) => (
               <FloatingProofCard
                 key={metric.label}
@@ -64,6 +64,7 @@ export function HeroSection() {
             initial={reduce ? false : { opacity: 0, x: 40, rotate: 2 }}
             animate={{ opacity: 1, x: 0, rotate: 0 }}
             transition={{ delay: 0.4, duration: 0.6, type: "spring", stiffness: 80 }}
+            className="mx-auto w-[92%] max-w-[500px] origin-center scale-[0.92] md:w-[94%] md:max-w-[520px] md:scale-[0.94]"
           >
             <DashboardPreview />
           </motion.div>

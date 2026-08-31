@@ -118,26 +118,6 @@ export const performanceMetrics = [
   },
 ] as const;
 
-export const hardwareCard = {
-  title: "Hardware Validated",
-  intro:
-    "Three off-the-shelf components on Raspberry Pi Pico 2 W. No custom PCBs. Validated on physical low-power microcontrollers.",
-  items: [
-    "Pico 2 W (RP2350)",
-    "INMP441 I2S Microphone",
-    "SSD1306 OLED Display",
-  ],
-  footer: "Total BOM: Rs 1,150",
-} as const;
-
-export const softwareCard = {
-  title: "Software Stack",
-  intro:
-    "Open-source only. TensorFlow Lite Micro pipeline with a custom-trained DS-CNN. No commercial voice-activation SDKs. MIT licensed end to end.",
-  items: ["Pico SDK (C/C++)", "TensorFlow Lite Micro", "DS-CNN · 38.6 KB · INT8"],
-  footer: "License: MIT",
-} as const;
-
 export const certificateMeta = {
   hash: "0x8a2f4c9e1d3b7f2a8e5c1d9b4f6a2e7c",
   generated: "Aug 30, 2026",
