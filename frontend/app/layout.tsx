@@ -16,9 +16,9 @@ const jetbrains = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "VoiceCore | Low-Latency Edge Voice Activator",
+  title: "AnuVanni | Low-Latency Edge Voice Activator",
   description:
-    "Open-source keyword spotting for ISRO PS 26172. Ultra-lightweight KWS on microcontrollers with hybrid edge-to-ASR streaming. SIH 2026 Smart Automation.",
+    "Open-source keyword spotting for microcontrollers. Ultra-lightweight KWS with hybrid edge-to-ASR streaming and real-time fleet monitoring.",
 };
 
 export default function RootLayout({

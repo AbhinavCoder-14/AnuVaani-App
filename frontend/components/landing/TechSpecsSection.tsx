@@ -39,7 +39,7 @@ export function TechSpecsSection() {
             <p className="mt-6 max-w-[480px] text-base leading-relaxed text-brand-body">
               Tested on {certificateMeta.devices} physical devices, {certificateMeta.keywords}{" "}
               custom keywords, over {certificateMeta.days} continuous days. Bench hardware. Controlled
-              environments. Published results aligned to PS 26172 evaluation criteria.
+              environments. Published results from controlled bench testing.
             </p>
           </Reveal>
         </div>

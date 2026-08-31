@@ -37,7 +37,7 @@ export function MetricsStrip() {
       </div>
       <Reveal delay={0.4}>
         <p className="mt-10 text-center text-sm italic text-brand-muted">
-          Measured across 8 physical devices, 5 custom keywords, 14 days continuous evaluation.
+          Measured across 8 physical devices, 5 custom keywords, 14 days continuous operation.
         </p>
       </Reveal>
     </SectionShell>

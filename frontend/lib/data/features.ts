@@ -31,9 +31,9 @@ export const pipelineStages = [
 export const primaryFeature = {
   title: "Custom Keyword Training",
   subtitle: "Your wake word. Not a global assistant keyword.",
-  command: '$ voicecore train --keyword "Vikram"',
+  command: '$ AnuVanni train --keyword "Vikram"',
   progress: 80,
-  body: "One CLI command turns 50 voice samples into a deployable INT8 model. Problem Statement 26172 prohibits pre-trained generic keywords and proprietary voice SDKs.",
+  body: "One CLI command turns 50 voice samples into a deployable INT8 model. No pre-trained generic keywords. No proprietary voice SDKs.",
   detail:
     "Train mission-specific wake words for ground stations, lab rigs, or payload consoles. Same DS-CNN pipeline, different training data.",
   comparison: "Proprietary SDK → Rs 0 open source",
@@ -50,7 +50,7 @@ export const secondaryFeatures = [
     title: "Resource-Bounded Runtime",
     subtitle: "Built for microcontroller limits",
     description:
-      "198 KB RAM, 8.7% idle CPU, 38.6 KB flash model. Meets ISRO evaluation bounds: under 256 KB RAM and under 10% CPU during continuous listening.",
+      "198 KB RAM, 8.7% idle CPU, 38.6 KB flash model. Stays under 256 KB RAM and under 10% CPU during continuous listening.",
   },
   {
     title: "Privacy-Preserving Design",
@@ -114,14 +114,14 @@ export const performanceMetrics = [
     used: 0.8,
     limit: 5,
     unit: "near-zero",
-    headroom: "PS 26172 pass",
+    headroom: "Within spec",
   },
 ] as const;
 
 export const hardwareCard = {
   title: "Hardware Validated",
   intro:
-    "Three off-the-shelf components on Raspberry Pi Pico 2 W. No custom PCBs. Evaluated on physical low-power microcontrollers as required by PS 26172.",
+    "Three off-the-shelf components on Raspberry Pi Pico 2 W. No custom PCBs. Validated on physical low-power microcontrollers.",
   items: [
     "Pico 2 W (RP2350)",
     "INMP441 I2S Microphone",

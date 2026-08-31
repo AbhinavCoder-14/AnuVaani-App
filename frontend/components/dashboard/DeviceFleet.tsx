@@ -166,7 +166,7 @@ function HardwareTab({ device }: { device: DeploymentDevice }) {
       </div>
 
       <div>
-        <p className="text-sm font-semibold text-brand-charcoal">PS 26172 Compliance</p>
+        <p className="text-sm font-semibold text-brand-charcoal">Resource Targets</p>
         <ul className="mt-3 divide-y divide-[#F3F4F6] rounded-xl border border-[#E5E7EB]">
           {checks.map((check) => (
             <li key={check.label} className="flex items-center justify-between gap-4 px-4 py-3 text-sm">

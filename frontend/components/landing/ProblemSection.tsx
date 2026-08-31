@@ -11,8 +11,8 @@ export function ProblemSection() {
           <TwoToneHeadline muted="Why cloud-only voice" emphasis="fails at the edge." />
           <p className="mt-6 max-w-[480px] text-base leading-relaxed text-brand-body">
             Voice-controlled IoT is spreading into ground systems, labs, and automation rigs. Sending
-            every audio frame to the cloud is too costly, too slow, and too invasive. PS 26172 asks
-            for a hybrid model: the edge handles wake-up, the cloud handles transcription.
+            every audio frame to the cloud is too costly, too slow, and too invasive. The edge should
+            handle wake-up; the cloud should handle transcription.
           </p>
         </Reveal>
 

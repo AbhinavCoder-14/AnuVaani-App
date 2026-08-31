@@ -16,13 +16,13 @@ export function DeploymentDashboard() {
       <main className="page-container space-y-6 py-8 md:space-y-8 md:py-10">
         <header>
           <p className="text-xs font-semibold uppercase tracking-wider text-brand-teal">
-            ISRO PS 26172 · Eval Console
+            AnuVanni · Dashboard
           </p>
           <h1 className="mt-1 text-3xl font-bold tracking-tight text-brand-charcoal md:text-4xl">
-            Evaluation Dashboard
+            Fleet Dashboard
           </h1>
           <p className="mt-2 text-sm text-brand-muted">
-            Evaluation fleet · {fleetHealth.devicesOnline} of {fleetHealth.devicesTotal} benches online
+            Device fleet · {fleetHealth.devicesOnline} of {fleetHealth.devicesTotal} nodes online
           </p>
         </header>
 

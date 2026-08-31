@@ -83,7 +83,7 @@ export function FleetHealth() {
         </div>
         <p className="mt-6 inline-flex items-center gap-1.5 rounded-full bg-brand-mint/15 px-3 py-1 text-xs font-semibold text-brand-teal">
           <Check className="h-3.5 w-3.5" />
-          PS 26172 Compliance: Pass
+          All targets: Pass
         </p>
       </article>
 

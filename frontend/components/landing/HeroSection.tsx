@@ -21,7 +21,7 @@ export function HeroSection() {
             transition={{ delay: 0.2, duration: 0.5 }}
             className="mb-6 inline-flex rounded-full bg-brand-teal/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-brand-teal"
           >
-            ISRO PS 26172 · SIH 2026
+            Open Source · Edge-Native
           </motion.span>
 
           <Reveal>
@@ -38,7 +38,7 @@ export function HeroSection() {
           <Reveal delay={0.2}>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link href="/dashboard" className="btn-primary">
-                Open Eval Console
+                Open Dashboard
               </Link>
               <Link href="#how-it-works" className="btn-ghost">
                 How it works

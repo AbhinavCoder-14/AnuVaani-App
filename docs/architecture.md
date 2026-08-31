@@ -2,29 +2,24 @@
 
 ## Overview
 
-The Edge Voice Activation System is an SIH hardware + AI project that enables always-on keyword detection on an edge device, with post-wake-word audio streaming to a Python backend for ASR and a real-time frontend dashboard.
+The Edge Voice Activation System is an open-source edge voice stack that enables always-on keyword detection on a low-power device, with post-wake-word audio streaming to a Python backend for ASR and a real-time frontend dashboard.
 
 ## System Flow
 
 ```text
-Edge Device
+ESP32 / Edge Device
     │
-    │ Continuous local listening + KWS (Keyword Spotting)
-    │
-    │ Wake word detected
-    ▼
-WebSocket Audio Stream  (/ws/device)
-    │
-    ▼
+    ├── UDP :8766  (telemetry every 1s)
+    └── TCP :8765  (PCM audio after wake)
+            │
+            ▼
 Python Backend (FastAPI)
     │
-    ├── Audio Stream Receiver
-    ├── Audio Session Management
-    ├── Audio Processing Pipeline
-    ├── ASR Integration
-    ├── Latency & Performance Metrics
+    ├── Device State Manager
+    ├── Audio Session → WAV → ASR
+    ├── Voice Intent Engine → Action
     │
-    │ WebSocket events  (/ws/dashboard)
+    │ REST API :8000
     ▼
 Frontend Dashboard (Next.js)
 ```
@@ -42,16 +37,20 @@ Frontend Dashboard (Next.js)
 
 | Module | Purpose |
 |--------|---------|
-| `api/` | REST endpoints (health, device registry) |
-| `websocket/` | Real-time channels for device audio and dashboard events |
-| `services/` | Business logic: audio sessions, ASR, metrics |
-| `schemas/` | Pydantic models shared across API and WebSocket |
-| `core/` | Configuration, shared utilities |
+| `core/` | Config, central device state |
+| `network/` | UDP telemetry + TCP audio servers |
+| `audio/` | Session manager, PCM buffer, WAV export |
+| `asr/` | Pluggable ASR (mock / Whisper) |
+| `intent/` | Fuzzy intent matching + action router |
+| `api/` | REST endpoints for frontend |
 
-**WebSocket routes:**
+**Network ports:**
 
-- `/ws/device` — Edge device connects here to stream audio and send telemetry
-- `/ws/dashboard` — Frontend connects here to receive real-time events and metrics
+- UDP **8766** — Edge device telemetry
+- TCP **8765** — Framed PCM audio stream
+- HTTP **8000** — REST API
+
+See [esp32-protocol.md](esp32-protocol.md) for packet formats.
 
 ### Frontend (`frontend/`)
 

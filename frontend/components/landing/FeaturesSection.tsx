@@ -19,7 +19,7 @@ export function FeaturesSection() {
     <SectionShell id="features" background="white">
       <div className="relative mb-10 md:mb-14">
         <Reveal>
-          <TwoToneHeadline muted="Engineered for the edge." emphasis="Validated for ISRO." />
+          <TwoToneHeadline muted="Engineered for the edge." emphasis="Built to last." />
         </Reveal>
 
         <div className="pointer-events-none absolute inset-0 hidden md:block">

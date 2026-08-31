@@ -30,7 +30,7 @@ export function SiteNav() {
     >
       <div className="page-container flex h-16 items-center justify-between md:h-[72px]">
         <Link href="/" className="flex items-center gap-2">
-          <span className="text-lg font-bold tracking-tight text-brand-charcoal">VoiceCore</span>
+          <span className="text-lg font-bold tracking-tight text-brand-charcoal">AnuVanni</span>
           <span className="rounded bg-brand-teal/10 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-brand-teal">
             Core
           </span>

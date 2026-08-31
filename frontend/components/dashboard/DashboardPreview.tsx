@@ -75,7 +75,7 @@ export function DashboardPreview({ compact = false }: { compact?: boolean }) {
                 Deployment Dashboard
               </p>
               <h3 className="text-sm font-bold text-brand-charcoal md:text-base">
-                VoiceCore Eval Console
+                AnuVanni Dashboard
               </h3>
             </div>
             <span className="rounded-full bg-brand-mint/15 px-2.5 py-1 text-xs font-semibold text-brand-teal">
@@ -99,7 +99,7 @@ export function DashboardPreview({ compact = false }: { compact?: boolean }) {
 
           <div className="mb-4 rounded-lg border border-gray-100 bg-brand-surface p-4">
             <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-brand-muted">
-              Evaluation Fleet Map
+              Fleet Map
             </p>
             <div className="relative h-28 rounded-lg bg-gradient-to-br from-brand-teal/5 to-brand-mint/10">
               {devices.map((d) => (

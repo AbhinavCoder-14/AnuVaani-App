@@ -29,14 +29,14 @@ const steps = [
   },
   {
     title: "Mount on Bench",
-    description: "Secure to rack or test fixture. Connect bench power. Ready for evaluation.",
+    description: "Secure to rack or test fixture. Connect bench power. Ready to deploy.",
     time: "10 min",
     icon: MapPin,
     detail: ["19-inch rack or bench mount", "Bench power supply", "Optional EMI enclosure", "USB tether for sync"],
   },
   {
-    title: "Run Evaluation",
-    description: "Metrics flow to the eval console. PS 26172 criteria tracked live.",
+    title: "Go Live",
+    description: "Metrics flow to the dashboard. Resource usage and latency tracked live.",
     time: "Instant",
     icon: Cpu,
     detail: ["Always-on keyword spotting", "RAM and CPU telemetry", "Latency histograms", "Certificate-ready exports"],
@@ -216,7 +216,7 @@ export function DeploymentJourney() {
             <span className="block text-brand-charcoal">Deploying it isn&apos;t.</span>
           </h2>
           <p className="mx-auto mt-5 max-w-lg text-base leading-relaxed text-brand-muted">
-            From unboxing a Pico 2 W to a PS 26172-ready evaluation bench. Five steps. Under two
+            From unboxing a Pico 2 W to a production-ready edge node. Five steps. Under two
             hours. No proprietary voice SDK required.
           </p>
         </motion.div>
@@ -264,10 +264,10 @@ export function DeploymentJourney() {
           transition={reduce ? { duration: 0 } : { delay: 3.2, duration: 0.4 }}
         >
           <p className="text-2xl font-semibold text-brand-charcoal">Total: under 2 hours</p>
-          <p className="mt-1 text-base text-brand-muted">from hardware to evaluation-ready bench</p>
+          <p className="mt-1 text-base text-brand-muted">from hardware to production-ready bench</p>
           <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
             <Link href="/dashboard" className="btn-primary">
-              Open Eval Console
+              Open Dashboard
             </Link>
             <Link href="https://github.com" className="btn-ghost">
               Read the Docs

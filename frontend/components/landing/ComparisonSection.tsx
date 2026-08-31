@@ -32,7 +32,7 @@ export function ComparisonSection() {
   return (
     <SectionShell background="surface">
       <Reveal>
-        <TwoToneHeadline muted="Why VoiceCore" emphasis="meets PS 26172." />
+        <TwoToneHeadline muted="Why AnuVanni" emphasis="wins on every count." />
       </Reveal>
 
       <Reveal delay={0.1}>
@@ -42,7 +42,7 @@ export function ComparisonSection() {
               <tr className="border-b border-gray-100 text-xs uppercase tracking-wider text-brand-muted">
                 <th className="p-4 font-semibold">Requirement</th>
                 <th className="border-l-4 border-brand-teal bg-brand-teal/5 p-4 font-semibold text-brand-charcoal">
-                  VoiceCore
+                  AnuVanni
                 </th>
                 <th className="p-4 font-semibold">Picovoice</th>
                 <th className="p-4 font-semibold">Google Assistant</th>

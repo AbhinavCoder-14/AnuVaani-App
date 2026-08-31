@@ -129,7 +129,7 @@ export const problemStats = [
 export const caseStudies = [
   {
     title: "Integration Lab Bench",
-    location: "ISRO Bengaluru, Karnataka",
+    location: "Bengaluru, Karnataka",
     quote: "Custom keyword Vikram validated on Pico 2 W with 162 ms average handoff latency.",
     activations: 427,
     far: "0.9%",

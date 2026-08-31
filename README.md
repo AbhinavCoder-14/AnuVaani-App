@@ -1,6 +1,6 @@
-# Edge Voice Activation System (VoiceCore)
+# Edge Voice Activation System (AnuVanni)
 
-An SIH hardware + AI project for edge-based keyword spotting with cloud ASR and a real-time monitoring dashboard.
+An open-source hardware + AI stack for edge-based keyword spotting with cloud ASR and a real-time monitoring dashboard.
 
 ## Architecture
 
@@ -8,12 +8,14 @@ An SIH hardware + AI project for edge-based keyword spotting with cloud ASR and 
 Edge Device → WebSocket (/ws/device) → Python Backend → WebSocket (/ws/dashboard) → Frontend Dashboard
 ```
 
+**Current prototype** uses UDP + TCP from ESP32 and REST polling from Next.js. See [docs/esp32-protocol.md](docs/esp32-protocol.md).
+
 See [docs/architecture.md](docs/architecture.md) for full system design.
 
 ## Repository Structure
 
 ```text
-VoiceCore/
+AnuVanni/
 ├── frontend/          Next.js dashboard (TypeScript, Tailwind, shadcn/ui)
 ├── backend/           FastAPI server (Python)
 ├── docs/              Architecture and design docs
@@ -100,4 +102,4 @@ docker compose up --build
 
 ## Current Status
 
-Project skeleton only — health check, WebSocket lifecycle, shared type contracts, and folder structure are in place. No KWS, ASR, or dashboard features implemented yet.
+Backend prototype implements UDP telemetry, TCP audio pipeline, mock ASR, intent engine, and REST API. Frontend dashboard still uses static demo data; wire to `/api/*` endpoints next.

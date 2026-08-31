@@ -8,12 +8,12 @@ export function DashboardShowcaseSection() {
     <SectionShell id="intelligence" background="white">
       <Reveal>
         <h2 className="text-4xl font-bold leading-[1.1] tracking-tight md:text-5xl">
-          <span className="text-brand-charcoal">Evaluation fleet.</span>{" "}
-          <span className="text-brand-faint">Live metrics.</span>
+          <span className="text-brand-charcoal">Live fleet.</span>{" "}
+          <span className="text-brand-faint">Real-time metrics.</span>
         </h2>
         <p className="mt-4 max-w-xl text-base text-brand-body">
-          Real-time telemetry from physical test benches across the evaluation fleet. RAM, CPU,
-          latency, and false-activation data for ISRO PS 26172 compliance review.
+          Real-time telemetry from deployed edge nodes across your fleet. RAM, CPU,
+          latency, and false-activation telemetry across your deployed fleet.
         </p>
       </Reveal>
 

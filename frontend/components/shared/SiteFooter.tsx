@@ -1,3 +1,4 @@
+import { Github, Linkedin } from "lucide-react";
 import Link from "next/link";
 
 export function SiteFooter() {
@@ -23,36 +24,44 @@ export function SiteFooter() {
             </Link>
           </nav>
           <a
-            href="mailto:team@voicecore.dev"
+            href="mailto:team@AnuVanni.dev"
             className="text-xl font-normal text-white md:text-2xl"
           >
-            team@voicecore.dev
+            team@AnuVanni.dev
           </a>
         </div>
 
         <div className="flex flex-col justify-between gap-6 py-10 md:flex-row md:items-center">
           <p className="text-sm text-white/50">
-            ISRO Problem Statement 26172 · Low Latency Edge Voice Activator · Smart Automation
+            Low Latency Edge Voice Activator
           </p>
-          <div className="flex gap-6 text-sm text-white/60">
-            <Link href="https://github.com" className="hover:text-white">
-              GitHub
+          <div className="flex items-center gap-4">
+            <Link
+              href="https://github.com"
+              aria-label="GitHub"
+              className="text-white/60 transition-colors hover:text-white"
+            >
+              <Github className="h-5 w-5" strokeWidth={1.75} />
             </Link>
-            <Link href="#" className="hover:text-white">
-              LinkedIn
+            <Link
+              href="#"
+              aria-label="LinkedIn"
+              className="text-white/60 transition-colors hover:text-white"
+            >
+              <Linkedin className="h-5 w-5" strokeWidth={1.75} />
             </Link>
           </div>
         </div>
 
         <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-          <h2 className="text-4xl font-bold tracking-tight md:text-6xl">VoiceCore</h2>
+          <h2 className="text-4xl font-bold tracking-tight md:text-6xl">AnuVanni</h2>
           <span className="rounded-full border border-white/20 px-3 py-1 text-xs text-white/60">
-            SIH 2026 · Department of Space
+            Open Source · Edge-Native
           </span>
         </div>
 
         <p className="mt-10 text-xs text-white/40">
-          © 2026 VoiceCore. MIT License. Privacy · Terms
+          © 2026 AnuVanni. MIT License. Privacy · Terms
         </p>
       </div>
     </footer>
