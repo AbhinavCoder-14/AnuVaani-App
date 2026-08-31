@@ -1,0 +1,716 @@
+export type DeviceStatus = "active" | "offline" | "warning";
+export type TimeRange = "7d" | "30d" | "all";
+export type AlertSeverity = "warning" | "info" | "critical";
+export type DeviceTab = "performance" | "hardware" | "alerts" | "confusion";
+
+export interface DeviceAlert {
+  date: string;
+  severity: AlertSeverity;
+  title: string;
+  impact: string;
+  resolution: string;
+}
+
+export interface ConfusionRow {
+  actual: string;
+  count: number;
+  kind: "correct" | "confused" | "false";
+}
+
+export interface DeploymentDevice {
+  id: string;
+  name: string;
+  city: string;
+  state: string;
+  language: string;
+  keyword: string;
+  status: DeviceStatus;
+  lat: number;
+  lng: number;
+  activationsToday: number;
+  activations24h: number;
+  truePositives: number;
+  falseActivations: number;
+  avgLatencyMs: number;
+  lastLatencyMs: number;
+  farPercent: number;
+  tprPercent: number;
+  ramKb: number;
+  cpuIdlePercent: number;
+  flashKb: number;
+  batteryPercent: number;
+  solarActive: boolean;
+  solarWatts: number;
+  estRuntimeDays: number;
+  charging: boolean;
+  network: "offline" | "online";
+  lastSync: string;
+  syncMethod: string;
+  queuedMb: number;
+  deployedAt: string;
+  uptime: string;
+  uptimePercent: number;
+  offlineDuration?: string;
+  noiseDb: number;
+  trend: number[];
+  latencyHistogram: number[];
+  medianLatencyMs: number;
+  p95LatencyMs: number;
+  alerts: DeviceAlert[];
+  confusion: ConfusionRow[];
+  confusionPair?: string;
+  confusionRecommendation?: string;
+}
+
+export const fleetHealth = {
+  devicesOnline: 8,
+  devicesTotal: 10,
+  avgUptime: 99.2,
+  lastOutage: "Aug 28, 2h",
+  tpr: 98.2,
+  far: 0.8,
+  avgLatencyMs: 165,
+  latencyTargetMs: 200,
+  bandwidthSavedGb: 4.2,
+  costSavedInr: 210000,
+  cpuIdleAvg: 8.7,
+  solarDevices: 6,
+  costPerActivation: 0.49,
+  lastUpdatedLabel: "2 minutes ago",
+};
+
+export const aggregateMetrics = {
+  activationsToday: 2341,
+  activationsDelta: 12,
+  avgLatencyMs: 165,
+  latencyDelta: -3,
+  farPercent: 0.8,
+  farDelta: -0.1,
+  costPerDevice: 1150,
+  devicesOnline: fleetHealth.devicesOnline,
+  devicesTotal: fleetHealth.devicesTotal,
+  languages: { Hindi: 3, English: 3, Tamil: 1, Marathi: 2, Telugu: 1 },
+};
+
+export const activationVolume: Record<
+  TimeRange,
+  { labels: string[]; values: number[]; total24h: number; peak: { value: number; date: string }; trend: number }
+> = {
+  "7d": {
+    labels: ["Aug 25", "Aug 26", "Aug 27", "Aug 28", "Aug 29", "Aug 30", "Aug 31"],
+    values: [1680, 1920, 1840, 2110, 1980, 1760, 2341],
+    total24h: 2341,
+    peak: { value: 2341, date: "Aug 31" },
+    trend: 12,
+  },
+  "30d": {
+    labels: ["Aug 2", "Aug 6", "Aug 10", "Aug 14", "Aug 18", "Aug 22", "Aug 26", "Aug 31"],
+    values: [980, 1210, 1450, 1680, 1890, 2210, 1980, 2341],
+    total24h: 2341,
+    peak: { value: 2341, date: "Aug 31" },
+    trend: 18,
+  },
+  all: {
+    labels: ["Jul 20", "Jul 27", "Aug 3", "Aug 10", "Aug 17", "Aug 24", "Aug 31"],
+    values: [420, 780, 1100, 1480, 1760, 2050, 2341],
+    total24h: 2341,
+    peak: { value: 2341, date: "Aug 31" },
+    trend: 24,
+  },
+};
+
+export const problemStats = [
+  { value: "<256 KB", label: "RAM footprint required during idle listening on the MCU" },
+  { value: "<10%", label: "CPU utilization ceiling while in continuous listen mode" },
+  { value: "165 ms", label: "Measured delta from keyword end to ASR stream start" },
+  { value: "0.8%", label: "False activation rate with 98.2% true-positive rate" },
+];
+
+export const caseStudies = [
+  {
+    title: "Integration Lab Bench",
+    location: "ISRO Bengaluru, Karnataka",
+    quote: "Custom keyword Vikram validated on Pico 2 W with 162 ms average handoff latency.",
+    activations: 427,
+    far: "0.9%",
+    duration: "14d",
+    language: "Custom keyword",
+    imageLabel: "Lab bench: Pico 2 W integration rig with OLED status display",
+  },
+  {
+    title: "Ground Segment Rig",
+    location: "Sriharikota Test Facility",
+    quote: "Hands-free telemetry queries triggered with sub-200 ms keyword-to-ASR latency.",
+    activations: 312,
+    far: "0.7%",
+    duration: "21d",
+    language: "Mission keyword",
+    imageLabel: "Ground rig: voice-activated console in EMI-shielded enclosure",
+  },
+  {
+    title: "Thermal Endurance Test",
+    location: "VSSC, Thiruvananthapuram",
+    quote: "Continuous listening held under 10% CPU for 14 days across 8 physical devices.",
+    activations: 195,
+    far: "0.7%",
+    duration: "30d",
+    language: "Multi-keyword",
+    imageLabel: "Endurance test: low-power node under sustained thermal load",
+  },
+];
+
+export const comparisonRows = [
+  { feature: "Open-source stack", edge: "Yes", picovoice: "No", google: "No" },
+  { feature: "Custom keyword only", edge: "Yes", picovoice: "Partial", google: "No" },
+  { feature: "Runs on <256 KB RAM", edge: "Yes", picovoice: "No", google: "No" },
+  { feature: "Idle CPU under 10%", edge: "Yes", picovoice: "No", google: "No" },
+  { feature: "Keyword-to-ASR latency", edge: "165 ms", picovoice: "N/A", google: "2-5 sec" },
+  { feature: "Commercial SDK required", edge: "No", picovoice: "Yes", google: "Yes" },
+];
+
+export const languagePerformance = [
+  { language: "English", keyword: "Emergency", tpr: 99, far: 0.5, devices: 3, tone: "pass" as const },
+  { language: "Marathi", keyword: "Sahayata", tpr: 98, far: 0.9, devices: 2, tone: "pass" as const },
+  { language: "Hindi", keyword: "Sahayata", tpr: 96, far: 1.2, devices: 3, tone: "pass" as const },
+  { language: "Telugu", keyword: "Oka Bata", tpr: 92, far: 1.5, devices: 1, tone: "watch" as const },
+  { language: "Tamil", keyword: "Unni Padi", tpr: 88, far: 2.1, devices: 1, tone: "watch" as const },
+];
+
+const defaultHistogram = [12, 48, 86, 31, 9];
+
+export const devices: DeploymentDevice[] = [
+  {
+    id: "MCK-001",
+    name: "Bengaluru Integration Lab",
+    city: "Bengaluru",
+    state: "Karnataka",
+    language: "Custom",
+    keyword: "Vikram",
+    status: "active",
+    lat: 19.076,
+    lng: 72.8777,
+    activationsToday: 427,
+    activations24h: 427,
+    truePositives: 423,
+    falseActivations: 4,
+    avgLatencyMs: 162,
+    lastLatencyMs: 162,
+    farPercent: 0.9,
+    tprPercent: 99.1,
+    ramKb: 196,
+    cpuIdlePercent: 8.2,
+    flashKb: 38.6,
+    batteryPercent: 94,
+    solarActive: true,
+    solarWatts: 1.2,
+    estRuntimeDays: 47,
+    charging: true,
+    network: "offline",
+    lastSync: "Aug 29, 11:45 PM",
+    syncMethod: "Manual USB",
+    queuedMb: 2.1,
+    deployedAt: "Aug 15, 2026",
+    uptime: "14d 23h 47m",
+    uptimePercent: 99.1,
+    noiseDb: 72,
+    trend: [280, 310, 350, 390, 420, 410, 427],
+    latencyHistogram: [8, 52, 94, 22, 6],
+    medianLatencyMs: 162,
+    p95LatencyMs: 210,
+    alerts: [
+      {
+        date: "Aug 29, 10:23 AM",
+        severity: "warning",
+        title: "Low solar charge dropped to 88%",
+        impact: "No service interruption. Node stayed online.",
+        resolution: "Auto-resolved: battery recovered to 94% by 2:15 PM",
+      },
+      {
+        date: "Aug 28, 3:15 PM",
+        severity: "warning",
+        title: 'Confusion detected: "Sahit" triggered as "Sahayata"',
+        impact: "1 false activation out of 312 that day (0.3%)",
+        resolution: 'Recommendation: Add "Sahit" to negative training set',
+      },
+      {
+        date: "Aug 27, 12:00 AM",
+        severity: "info",
+        title: "Battery backup activated (cloud cover, no solar)",
+        impact: "Duration: 6 hours. No service interruption.",
+        resolution: "Solar input resumed at 6:12 AM",
+      },
+    ],
+    confusion: [
+      { actual: 'Actual "Sahayata"', count: 423, kind: "correct" },
+      { actual: 'Actual "Sahit"', count: 2, kind: "confused" },
+      { actual: "Actual silence", count: 1, kind: "false" },
+      { actual: "Actual background", count: 1, kind: "false" },
+    ],
+    confusionPair: '"Sahit" → "Sahayata" (0.5% of triggers)',
+    confusionRecommendation: 'Retrain with 20 more "Sahit" negative samples',
+  },
+  {
+    id: "DTS-002",
+    name: "Sriharikota Ground Rig",
+    city: "Sriharikota",
+    state: "Andhra Pradesh",
+    language: "Mission",
+    keyword: "Sahayata",
+    status: "active",
+    lat: 28.6139,
+    lng: 77.209,
+    activationsToday: 312,
+    activations24h: 312,
+    truePositives: 308,
+    falseActivations: 4,
+    avgLatencyMs: 178,
+    lastLatencyMs: 178,
+    farPercent: 1.1,
+    tprPercent: 98.7,
+    ramKb: 198,
+    cpuIdlePercent: 8.7,
+    flashKb: 38.6,
+    batteryPercent: 91,
+    solarActive: true,
+    solarWatts: 1.0,
+    estRuntimeDays: 41,
+    charging: true,
+    network: "offline",
+    lastSync: "Aug 30, 6:10 AM",
+    syncMethod: "Manual USB",
+    queuedMb: 1.4,
+    deployedAt: "Aug 10, 2026",
+    uptime: "19d 4h 12m",
+    uptimePercent: 98.4,
+    noiseDb: 78,
+    trend: [220, 250, 270, 290, 300, 305, 312],
+    latencyHistogram: [6, 38, 88, 40, 12],
+    medianLatencyMs: 178,
+    p95LatencyMs: 228,
+    alerts: [],
+    confusion: [
+      { actual: 'Actual "Sahayata"', count: 308, kind: "correct" },
+      { actual: "Actual traffic noise", count: 3, kind: "false" },
+      { actual: "Actual background", count: 1, kind: "false" },
+    ],
+  },
+  {
+    id: "PUN-003",
+    name: "Thermal Vacuum Bench",
+    city: "Ahmedabad",
+    state: "Gujarat",
+    language: "English",
+    keyword: "Emergency",
+    status: "active",
+    lat: 18.5204,
+    lng: 73.8567,
+    activationsToday: 195,
+    activations24h: 195,
+    truePositives: 194,
+    falseActivations: 1,
+    avgLatencyMs: 159,
+    lastLatencyMs: 159,
+    farPercent: 0.7,
+    tprPercent: 99.5,
+    ramKb: 194,
+    cpuIdlePercent: 7.9,
+    flashKb: 38.6,
+    batteryPercent: 97,
+    solarActive: true,
+    solarWatts: 1.4,
+    estRuntimeDays: 52,
+    charging: true,
+    network: "offline",
+    lastSync: "Aug 30, 9:00 PM",
+    syncMethod: "Manual USB",
+    queuedMb: 0.8,
+    deployedAt: "Aug 1, 2026",
+    uptime: "28d 11h 5m",
+    uptimePercent: 99.6,
+    noiseDb: 58,
+    trend: [140, 155, 160, 170, 180, 190, 195],
+    latencyHistogram: [14, 62, 80, 18, 4],
+    medianLatencyMs: 159,
+    p95LatencyMs: 198,
+    alerts: [],
+    confusion: [{ actual: 'Actual "Emergency"', count: 194, kind: "correct" }, { actual: "Actual background", count: 1, kind: "false" }],
+  },
+  {
+    id: "BFS-004",
+    name: "Mission Control Simulator",
+    city: "Bengaluru",
+    state: "Karnataka",
+    language: "English",
+    keyword: "Emergency",
+    status: "offline",
+    lat: 12.9716,
+    lng: 77.5946,
+    activationsToday: 0,
+    activations24h: 0,
+    truePositives: 0,
+    falseActivations: 0,
+    avgLatencyMs: 0,
+    lastLatencyMs: 145,
+    farPercent: 0,
+    tprPercent: 0,
+    ramKb: 0,
+    cpuIdlePercent: 0,
+    flashKb: 38.6,
+    batteryPercent: 42,
+    solarActive: false,
+    solarWatts: 0,
+    estRuntimeDays: 0,
+    charging: false,
+    network: "offline",
+    lastSync: "Aug 31, 6:12 AM",
+    syncMethod: "Manual USB",
+    queuedMb: 0,
+    deployedAt: "Jul 20, 2026",
+    uptime: "0d 0h 0m",
+    uptimePercent: 87.3,
+    offlineDuration: "2h",
+    noiseDb: 64,
+    trend: [180, 172, 190, 160, 148, 90, 0],
+    latencyHistogram: [0, 0, 0, 0, 0],
+    medianLatencyMs: 145,
+    p95LatencyMs: 190,
+    alerts: [
+      {
+        date: "Aug 31, 8:00 AM",
+        severity: "critical",
+        title: "Device offline during firmware update",
+        impact: "Keyword detection paused at this bench for 2 hours during OTA flash.",
+        resolution: "Update in progress. Resume expected within the hour.",
+      },
+    ],
+    confusion: [],
+  },
+  {
+    id: "SGL-005",
+    name: "Payload Bay Prototype",
+    city: "Hassan",
+    state: "Karnataka",
+    language: "Custom",
+    keyword: "Sahayata",
+    status: "active",
+    lat: 16.8524,
+    lng: 74.5815,
+    activationsToday: 268,
+    activations24h: 268,
+    truePositives: 265,
+    falseActivations: 3,
+    avgLatencyMs: 164,
+    lastLatencyMs: 164,
+    farPercent: 1.1,
+    tprPercent: 98.9,
+    ramKb: 197,
+    cpuIdlePercent: 8.4,
+    flashKb: 38.6,
+    batteryPercent: 89,
+    solarActive: true,
+    solarWatts: 1.1,
+    estRuntimeDays: 38,
+    charging: true,
+    network: "offline",
+    lastSync: "Aug 30, 8:40 PM",
+    syncMethod: "Manual USB",
+    queuedMb: 1.7,
+    deployedAt: "Aug 12, 2026",
+    uptime: "17d 8h 22m",
+    uptimePercent: 99.0,
+    noiseDb: 70,
+    trend: [190, 210, 230, 240, 250, 255, 268],
+    latencyHistogram: defaultHistogram,
+    medianLatencyMs: 164,
+    p95LatencyMs: 208,
+    alerts: [],
+    confusion: [
+      { actual: 'Actual "Sahayata"', count: 265, kind: "correct" },
+      { actual: 'Actual "Sahit"', count: 2, kind: "confused" },
+      { actual: "Actual background", count: 1, kind: "false" },
+    ],
+  },
+  {
+    id: "CHN-006",
+    name: "EMI Chamber Node",
+    city: "Chennai",
+    state: "Tamil Nadu",
+    language: "Custom",
+    keyword: "Unni Padi",
+    status: "active",
+    lat: 13.0827,
+    lng: 80.2707,
+    activationsToday: 241,
+    activations24h: 241,
+    truePositives: 212,
+    falseActivations: 5,
+    avgLatencyMs: 171,
+    lastLatencyMs: 171,
+    farPercent: 2.1,
+    tprPercent: 88.0,
+    ramKb: 199,
+    cpuIdlePercent: 8.9,
+    flashKb: 38.6,
+    batteryPercent: 86,
+    solarActive: false,
+    solarWatts: 0,
+    estRuntimeDays: 22,
+    charging: false,
+    network: "offline",
+    lastSync: "Aug 30, 4:20 PM",
+    syncMethod: "Manual USB",
+    queuedMb: 2.4,
+    deployedAt: "Aug 8, 2026",
+    uptime: "21d 2h 9m",
+    uptimePercent: 97.8,
+    noiseDb: 76,
+    trend: [160, 180, 200, 210, 220, 230, 241],
+    latencyHistogram: [10, 40, 78, 36, 14],
+    medianLatencyMs: 171,
+    p95LatencyMs: 236,
+    alerts: [
+      {
+        date: "Aug 26, 11:40 AM",
+        severity: "warning",
+        title: "Elevated false accepts in market noise",
+        impact: "FAR at 2.1%, above the 2.0% watch threshold.",
+        resolution: "Retrain with 50 more negative market-noise samples.",
+      },
+    ],
+    confusion: [
+      { actual: 'Actual "Unni Padi"', count: 212, kind: "correct" },
+      { actual: "Actual market call", count: 4, kind: "confused" },
+      { actual: "Actual background", count: 1, kind: "false" },
+    ],
+    confusionPair: "Market calls mistaken for Unni Padi",
+    confusionRecommendation: "Retrain with 50 more negative samples from market audio.",
+  },
+  {
+    id: "HYD-007",
+    name: "VSSC Test Bench",
+    city: "Thiruvananthapuram",
+    state: "Kerala",
+    language: "Custom",
+    keyword: "Oka Bata",
+    status: "active",
+    lat: 17.385,
+    lng: 78.4867,
+    activationsToday: 188,
+    activations24h: 188,
+    truePositives: 173,
+    falseActivations: 3,
+    avgLatencyMs: 169,
+    lastLatencyMs: 169,
+    farPercent: 1.5,
+    tprPercent: 92.0,
+    ramKb: 195,
+    cpuIdlePercent: 8.1,
+    flashKb: 38.6,
+    batteryPercent: 92,
+    solarActive: true,
+    solarWatts: 1.15,
+    estRuntimeDays: 44,
+    charging: true,
+    network: "offline",
+    lastSync: "Aug 29, 10:05 PM",
+    syncMethod: "Manual USB",
+    queuedMb: 1.1,
+    deployedAt: "Aug 6, 2026",
+    uptime: "23d 6h 40m",
+    uptimePercent: 98.9,
+    noiseDb: 68,
+    trend: [120, 140, 150, 160, 170, 180, 188],
+    latencyHistogram: [11, 44, 82, 28, 8],
+    medianLatencyMs: 169,
+    p95LatencyMs: 214,
+    alerts: [],
+    confusion: [
+      { actual: 'Actual "Oka Bata"', count: 173, kind: "correct" },
+      { actual: "Actual similar phrase", count: 2, kind: "confused" },
+      { actual: "Actual background", count: 1, kind: "false" },
+    ],
+  },
+  {
+    id: "LKO-008",
+    name: "URSC Link Rig",
+    city: "Bengaluru",
+    state: "Karnataka",
+    language: "Mission",
+    keyword: "Sahayata",
+    status: "active",
+    lat: 26.8467,
+    lng: 80.9462,
+    activationsToday: 274,
+    activations24h: 274,
+    truePositives: 263,
+    falseActivations: 4,
+    avgLatencyMs: 166,
+    lastLatencyMs: 166,
+    farPercent: 1.4,
+    tprPercent: 96.0,
+    ramKb: 196,
+    cpuIdlePercent: 8.5,
+    flashKb: 38.6,
+    batteryPercent: 90,
+    solarActive: true,
+    solarWatts: 1.05,
+    estRuntimeDays: 40,
+    charging: true,
+    network: "offline",
+    lastSync: "Aug 30, 7:55 PM",
+    syncMethod: "Manual USB",
+    queuedMb: 1.6,
+    deployedAt: "Aug 9, 2026",
+    uptime: "20d 14h 3m",
+    uptimePercent: 98.8,
+    noiseDb: 69,
+    trend: [180, 200, 220, 240, 250, 260, 274],
+    latencyHistogram: [9, 46, 84, 30, 10],
+    medianLatencyMs: 166,
+    p95LatencyMs: 212,
+    alerts: [],
+    confusion: [
+      { actual: 'Actual "Sahayata"', count: 263, kind: "correct" },
+      { actual: "Actual similar phrase", count: 3, kind: "confused" },
+      { actual: "Actual background", count: 1, kind: "false" },
+    ],
+  },
+  {
+    id: "NGP-009",
+    name: "Low-Power Endurance Node",
+    city: "Mahendragiri",
+    state: "Tamil Nadu",
+    language: "English",
+    keyword: "Emergency",
+    status: "active",
+    lat: 21.1458,
+    lng: 79.0882,
+    activationsToday: 142,
+    activations24h: 142,
+    truePositives: 141,
+    falseActivations: 1,
+    avgLatencyMs: 155,
+    lastLatencyMs: 155,
+    farPercent: 0.7,
+    tprPercent: 99.3,
+    ramKb: 193,
+    cpuIdlePercent: 7.6,
+    flashKb: 38.6,
+    batteryPercent: 95,
+    solarActive: true,
+    solarWatts: 1.3,
+    estRuntimeDays: 50,
+    charging: true,
+    network: "offline",
+    lastSync: "Aug 30, 5:30 PM",
+    syncMethod: "Manual USB",
+    queuedMb: 0.6,
+    deployedAt: "Aug 4, 2026",
+    uptime: "25d 9h 18m",
+    uptimePercent: 99.4,
+    noiseDb: 54,
+    trend: [90, 100, 110, 120, 128, 136, 142],
+    latencyHistogram: [16, 68, 74, 12, 3],
+    medianLatencyMs: 155,
+    p95LatencyMs: 188,
+    alerts: [],
+    confusion: [{ actual: 'Actual "Emergency"', count: 141, kind: "correct" }, { actual: "Actual background", count: 1, kind: "false" }],
+  },
+  {
+    id: "JPR-010",
+    name: "Battery Stress Rig",
+    city: "Sriharikota",
+    state: "Andhra Pradesh",
+    language: "Mission",
+    keyword: "Sahayata",
+    status: "offline",
+    lat: 26.9124,
+    lng: 75.7873,
+    activationsToday: 0,
+    activations24h: 0,
+    truePositives: 0,
+    falseActivations: 0,
+    avgLatencyMs: 0,
+    lastLatencyMs: 170,
+    farPercent: 0,
+    tprPercent: 0,
+    ramKb: 0,
+    cpuIdlePercent: 0,
+    flashKb: 38.6,
+    batteryPercent: 18,
+    solarActive: false,
+    solarWatts: 0,
+    estRuntimeDays: 0,
+    charging: false,
+    network: "offline",
+    lastSync: "Aug 30, 11:20 AM",
+    syncMethod: "Manual USB",
+    queuedMb: 0.3,
+    deployedAt: "Aug 3, 2026",
+    uptime: "0d 0h 0m",
+    uptimePercent: 91.2,
+    offlineDuration: "14h",
+    noiseDb: 66,
+    trend: [150, 160, 155, 148, 120, 40, 0],
+    latencyHistogram: [0, 0, 0, 0, 0],
+    medianLatencyMs: 170,
+    p95LatencyMs: 220,
+    alerts: [
+      {
+        date: "Aug 30, 6:40 PM",
+        severity: "critical",
+        title: "Battery depleted after extended cloudy cycle",
+        impact: "Bench voice access paused until solar charge recovers.",
+        resolution: "Swap backup cell or wait for next clear-sky charge cycle.",
+      },
+    ],
+    confusion: [],
+  },
+];
+
+export const languageInsight =
+  'Tamil has the highest FAR (2.1%) due to phonetic similarity between "Unni Padi" and common market sounds. Recommendation: retrain with 50 more negative samples.';
+
+export function getActiveAlerts() {
+  return devices.flatMap((device) =>
+    device.alerts
+      .filter((alert) => alert.severity === "critical" && device.status !== "active")
+      .map((alert) => ({ device, alert })),
+  );
+}
+
+export function exportFleetCsv() {
+  const header = [
+    "id",
+    "name",
+    "city",
+    "state",
+    "language",
+    "keyword",
+    "status",
+    "activations_24h",
+    "tpr_percent",
+    "far_percent",
+    "avg_latency_ms",
+    "uptime_percent",
+    "battery_percent",
+  ];
+  const rows = devices.map((d) =>
+    [
+      d.id,
+      d.name,
+      d.city,
+      d.state,
+      d.language,
+      d.keyword,
+      d.status,
+      d.activations24h,
+      d.tprPercent,
+      d.farPercent,
+      d.avgLatencyMs || d.lastLatencyMs,
+      d.uptimePercent,
+      d.batteryPercent,
+    ].join(","),
+  );
+  return [header.join(","), ...rows].join("\n");
+}
