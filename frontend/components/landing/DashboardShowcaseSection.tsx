@@ -12,8 +12,8 @@ import { useState } from "react";
 const easeOut = [0.16, 1, 0.3, 1] as const;
 
 const headlineWords = {
-  line1: ["Turning", "fleet", "data", "into"],
-  line2: ["real", "actions", "and", "insights."],
+  line1: ["Monitor", "every", "node", "across"],
+  line2: ["kiosks,", "fields,", "and", "alerts."],
 };
 
 const insightItems = [
@@ -213,8 +213,8 @@ export function DashboardShowcaseSection() {
             transition={{ delay: 0.5, duration: 0.5, ease: easeOut }}
             className="mt-5 max-w-xl text-base text-brand-body"
           >
-            Real-time telemetry from deployed edge nodes across your fleet. RAM, CPU,
-            latency, and false-activation rates — all in one view.
+            Real-time telemetry from deployed edge nodes — village kiosks, flood sensors,
+            and field stations. RAM, CPU, latency, and false-activation rates in one view.
           </motion.p>
         </header>
 
@@ -263,7 +263,7 @@ export function DashboardShowcaseSection() {
                 style={{ transform: "rotateY(8deg) rotateZ(-3deg)" }}
               >
                 <div className="bg-brand-charcoal px-4 py-2.5">
-                  <p className="text-[11px] font-semibold text-white">AnuVanni Mobile</p>
+                  <p className="text-[11px] font-semibold text-white">AnuVaani Mobile</p>
                 </div>
                 <div className="space-y-3 p-4">
                   <div>

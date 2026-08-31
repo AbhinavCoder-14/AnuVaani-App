@@ -100,7 +100,7 @@
   }
 
   .marquee-track {
-    animation: marquee-scroll 40s linear infinite;
+    animation: marquee-scroll 55s linear infinite;
   }
 
   .group:hover .marquee-track {

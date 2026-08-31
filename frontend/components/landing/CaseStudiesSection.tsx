@@ -13,7 +13,7 @@ export function CaseStudiesSection() {
         </h2>
       </Reveal>
 
-      <div className="mt-12 grid gap-6 md:grid-cols-2">
+      <div className="section-stack grid gap-6 md:grid-cols-2">
         {caseStudies.map((study, i) => (
           <Reveal key={study.title} delay={i * 0.1} className={i === 2 ? "md:col-span-2 md:max-w-xl md:justify-self-center" : ""}>
             <article className="card-surface overflow-hidden">
@@ -45,7 +45,7 @@ export function CaseStudiesSection() {
                   <span className="text-brand-muted">·</span>
                   <span>{study.duration}</span>
                 </div>
-                <p className="mt-3 text-sm text-brand-muted">Keyword: {study.language}</p>
+                <p className="mt-3 text-sm text-brand-muted">Language: {study.language}</p>
               </div>
             </article>
           </Reveal>

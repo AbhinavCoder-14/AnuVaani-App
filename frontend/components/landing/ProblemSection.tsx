@@ -8,11 +8,12 @@ export function ProblemSection() {
     <SectionShell id="problem" background="white">
       <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
         <Reveal>
-          <TwoToneHeadline muted="Why cloud-only voice" emphasis="fails at the edge." />
+          <TwoToneHeadline muted="Why cloud-only voice" emphasis="fails in rural India." />
           <p className="mt-6 max-w-[480px] text-base leading-relaxed text-brand-body">
-            Voice-controlled IoT is spreading into ground systems, labs, and automation rigs. Sending
-            every audio frame to the cloud is too costly, too slow, and too invasive. The edge should
-            handle wake-up; the cloud should handle transcription.
+            Village kiosks, flood sensors, and field nodes cannot depend on reliable internet or
+            expensive satellite bandwidth. Streaming every audio frame to foreign cloud ASR costs
+            ₹50,000+/month per kiosk and adds 2–5 seconds of latency. The edge must decide
+            instantly; the cloud is optional.
           </p>
         </Reveal>
 

@@ -1,4 +1,4 @@
-# Edge Voice Activation System (AnuVanni)
+# Edge Voice Activation System (AnuVaani)
 
 An open-source hardware + AI stack for edge-based keyword spotting with cloud ASR and a real-time monitoring dashboard.
 
@@ -15,7 +15,7 @@ See [docs/architecture.md](docs/architecture.md) for full system design.
 ## Repository Structure
 
 ```text
-AnuVanni/
+AnuVaani/
 ├── frontend/          Next.js dashboard (TypeScript, Tailwind, shadcn/ui)
 ├── backend/           FastAPI server (Python)
 ├── docs/              Architecture and design docs

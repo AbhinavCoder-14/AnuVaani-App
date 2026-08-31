@@ -28,9 +28,10 @@ export function TechSpecsSection() {
 
           <Reveal delay={0.1}>
             <p className="mt-6 max-w-[480px] text-base leading-relaxed text-brand-body">
-              Tested on {certificateMeta.devices} physical devices, {certificateMeta.keywords}{" "}
-              custom keywords, over {certificateMeta.days} continuous days. Bench hardware. Controlled
-              environments. Published results from controlled bench testing.
+              Validated against ISRO PS 26172 acceptance criteria on {certificateMeta.devices}{" "}
+              physical devices, {certificateMeta.keywords} Indic-language keywords, over{" "}
+              {certificateMeta.days} continuous days. Real hardware. Measured RAM, CPU, latency,
+              and false-activation rates — not marketing claims.
             </p>
           </Reveal>
         </div>

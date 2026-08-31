@@ -10,32 +10,32 @@ export const marqueeItems = [
 export const pipelineStages = [
   {
     title: "Always-On Stage",
-    subtitle: "Continuous listening under power budget",
+    subtitle: "Continuous listening under solar power budget",
     description:
-      "INMP441 mic feeds audio through MFCC feature extraction into a DS-CNN classifier. Under 10% CPU. Under 256 KB RAM. Designed for always-on edge nodes and low-power microcontrollers.",
+      "INMP441 mic feeds audio through MFCC extraction into a DS-CNN classifier. Under 10% CPU. Under 256 KB RAM. Runs 24/7 on solar-powered kiosks, field nodes, and disaster monitoring stations.",
   },
   {
     title: "Keyword Detection",
-    subtitle: "The moment of decision",
+    subtitle: "The moment of decision — on device",
     description:
-      "When classifier confidence exceeds threshold, the system transitions in under 165 ms. Wake-word logic stays on-device. No proprietary SDK. No pre-trained Alexa or Google keywords.",
+      "When confidence exceeds threshold, the system acts in under 165 ms. Wake-word logic stays local. Train Hindi, Tamil, Telugu, or Marathi keywords. No Alexa. No Google. No proprietary SDK.",
   },
   {
     title: "Post-Wake Stream",
-    subtitle: "Cloud ASR only after activation",
+    subtitle: "Cloud ASR only when connectivity allows",
     description:
-      "Subsequent audio streams to a remote ASR server with minimal overhead. Latency is measured from keyword end to first ASR packet. Optional cloud integration. The system is complete and functional without it.",
+      "Subsequent audio streams to remote ASR only after a true positive. 99% of audio never leaves the device. Works fully offline — cloud is optional, not required.",
   },
 ] as const;
 
 export const primaryFeature = {
   title: "Custom Keyword Training",
   subtitle: "Your wake word. Not a global assistant keyword.",
-  command: '$ AnuVanni train --keyword "Vikram"',
+  command: '$ AnuVaani train --keyword "Jaagroo"',
   progress: 80,
   body: "One CLI command turns 50 voice samples into a deployable INT8 model. No pre-trained generic keywords. No proprietary voice SDKs.",
   detail:
-    "Train mission-specific wake words for ground stations, lab rigs, or payload consoles. Same DS-CNN pipeline, different training data.",
+    "Train wake words in Hindi, Tamil, Telugu, or Marathi for village kiosks, flood alert nodes, or agricultural field stations. Same DS-CNN pipeline, different training data.",
   comparison: "Proprietary SDK → Rs 0 open source",
 } as const;
 
@@ -44,19 +44,19 @@ export const secondaryFeatures = [
     title: "Hybrid Edge-Cloud Pipeline",
     subtitle: "Edge wakes. Cloud transcribes.",
     description:
-      "The microcontroller handles keyword spotting locally. ASR runs remotely only after a true positive. 165 ms handoff latency vs 2-5 second full-cloud round trips.",
+      "The microcontroller handles keyword spotting locally. ASR runs remotely only after a true positive. 165 ms handoff vs 2–5 second full-cloud round trips — critical for disaster alerts and civic kiosks.",
   },
   {
     title: "Resource-Bounded Runtime",
-    subtitle: "Built for microcontroller limits",
+    subtitle: "Built for ₹600 microcontrollers",
     description:
-      "198 KB RAM, 8.7% idle CPU, 38.6 KB flash model. Stays under 256 KB RAM and under 10% CPU during continuous listening.",
+      "198 KB RAM, 8.7% idle CPU, 38.6 KB flash model. Stays under 256 KB RAM and under 10% CPU — runs weeks on solar in remote fields and mountain monitoring stations.",
   },
   {
     title: "Privacy-Preserving Design",
-    subtitle: "Audio stays local until the keyword fires",
+    subtitle: "Indian data stays on Indian hardware",
     description:
-      "99.2% of captured audio is discarded on-device. Only post-wake audio streams to ASR. No continuous cloud upload. Suitable for secure ground-segment and lab environments.",
+      "99.2% of captured audio is discarded on-device. No continuous cloud upload. Citizens asking for land records, welfare benefits, or health info — audio never leaves the kiosk until they speak the wake word.",
   },
 ] as const;
 

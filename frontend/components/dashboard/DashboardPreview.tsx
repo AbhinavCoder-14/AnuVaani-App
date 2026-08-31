@@ -75,7 +75,7 @@ export function DashboardPreview({ compact = false }: { compact?: boolean }) {
                 Deployment Dashboard
               </p>
               <h3 className="text-sm font-bold text-brand-charcoal md:text-base">
-                AnuVanni Dashboard
+                AnuVaani Dashboard
               </h3>
             </div>
             <span className="rounded-full bg-brand-mint/15 px-2.5 py-1 text-xs font-semibold text-brand-teal">
@@ -162,7 +162,7 @@ export function DashboardPreview({ compact = false }: { compact?: boolean }) {
           className="absolute -bottom-4 right-0 z-30 hidden rounded-card border border-gray-200 bg-white px-4 py-3 shadow-float transition-transform hover:-translate-y-0.5 md:block"
         >
           <p className="text-xs text-brand-muted">Language</p>
-          <p className="text-sm font-bold text-brand-charcoal">Marathi · 98.2% TPR</p>
+          <p className="text-sm font-bold text-brand-charcoal">Marathi · Sahayata · 98% TPR</p>
         </Link>
       )}
     </div>

@@ -16,7 +16,7 @@ import { motion, useReducedMotion } from "motion/react";
 const easeOut = [0.16, 1, 0.3, 1] as const;
 
 const headlineWords = {
-  line1: ["Engineered", "for", "the", "edge."],
+  line1: ["Engineered", "for", "rural", "India."],
   line2: [
     { text: "Built", muted: true },
     { text: "to", muted: false },
@@ -163,11 +163,11 @@ function FeatureCard({
       </div>
 
       <div className="flex flex-col items-center gap-3 px-8 pb-12 pt-2 text-center md:px-12">
-        <h3 className="max-w-[324px] text-[clamp(1.375rem,2.2vw,1.776rem)] font-normal leading-[1.3] tracking-[-0.02em] text-brand-charcoal">
+        <h3 className="max-w-[324px] text-[clamp(1.5rem,2.4vw,1.95rem)] font-bold leading-[1.3] tracking-[-0.02em] text-brand-charcoal">
           {title}
         </h3>
-        <p className="text-sm font-medium text-brand-teal">{subtitle}</p>
-        <p className="max-w-[445px] text-[clamp(1rem,1.4vw,1.2rem)] font-light leading-[1.5] text-brand-charcoal">
+        <p className="text-xs font-medium text-brand-teal">{subtitle}</p>
+        <p className="max-w-[445px] text-[clamp(0.9375rem,1.25vw,1.0625rem)] font-light leading-[1.5] text-brand-charcoal">
           {description}
         </p>
       </div>

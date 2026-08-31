@@ -1,5 +1,6 @@
 "use client";
 
+import { SectionShell } from "@/components/shared/SectionShell";
 import { Cpu, Download, MapPin, Mic, Puzzle, Check } from "lucide-react";
 import { motion, useInView, useReducedMotion } from "motion/react";
 import Link from "next/link";
@@ -22,24 +23,24 @@ const steps = [
   },
   {
     title: "Train Your Word",
-    description: "Say your keyword 50 times. Any language. The CLI handles the rest.",
+    description: "Say your keyword 50 times in Hindi, Tamil, or Marathi. The CLI handles the rest.",
     time: "20 min",
     icon: Mic,
-    detail: ["Any language or dialect", "50 spoken samples", "Negative samples collected automatically", "CLI trains on-device"],
+    detail: ["Hindi, Tamil, Telugu, Marathi", "50 spoken samples", "Negative samples collected automatically", "CLI trains on-device — no ML expertise needed"],
   },
   {
-    title: "Mount on Bench",
-    description: "Secure to rack or test fixture. Connect bench power. Ready to deploy.",
+    title: "Deploy in Field",
+    description: "Mount on kiosk, flood sensor pole, or field station. Solar power. Ready to serve.",
     time: "10 min",
     icon: MapPin,
-    detail: ["19-inch rack or bench mount", "Bench power supply", "Optional EMI enclosure", "USB tether for sync"],
+    detail: ["Village kiosk or sensor pole mount", "Solar panel + battery backup", "Weatherproof enclosure", "USB tether for offline sync"],
   },
   {
     title: "Go Live",
-    description: "Metrics flow to the dashboard. Resource usage and latency tracked live.",
+    description: "Citizens speak. Nodes respond. Metrics flow to the dashboard in real time.",
     time: "Instant",
     icon: Cpu,
-    detail: ["Always-on keyword spotting", "RAM and CPU telemetry", "Latency histograms", "Certificate-ready exports"],
+    detail: ["Always-on keyword spotting", "RAM and CPU telemetry", "Latency histograms", "PS 26172 certificate-ready exports"],
   },
 ];
 
@@ -200,11 +201,16 @@ export function DeploymentJourney() {
   const started = Boolean(inView);
 
   return (
-    <SectionShell id="deploy" ref={ref} className="relative overflow-hidden">
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <BackgroundSchematic />
-      </div>
-      <div className="relative">
+    <SectionShell
+      id="deploy"
+      ref={ref}
+      className="overflow-hidden"
+      overlay={
+        <div className="pointer-events-none absolute inset-0 overflow-hidden">
+          <BackgroundSchematic />
+        </div>
+      }
+    >
         <motion.div
           className="mx-auto max-w-2xl text-center"
           initial={{ opacity: 0, y: 20 }}
@@ -216,12 +222,12 @@ export function DeploymentJourney() {
             <span className="block text-brand-charcoal">Deploying it isn&apos;t.</span>
           </h2>
           <p className="mx-auto mt-5 max-w-lg text-base leading-relaxed text-brand-muted">
-            From unboxing a Pico 2 W to a production-ready edge node. Five steps. Under two
-            hours. No proprietary voice SDK required.
+            From unboxing a Pico 2 W to a production-ready village kiosk or disaster alert node.
+            Five steps. Under two hours. No proprietary voice SDK required.
           </p>
         </motion.div>
 
-        <div className="mt-16 hidden items-start justify-center lg:flex">
+        <div className="section-stack hidden items-start justify-center lg:flex">
           {steps.map((step, i) => (
             <div key={step.title} className="flex items-start">
               <StepNode step={step} index={i} started={started} reduce={reduce} />
@@ -264,7 +270,7 @@ export function DeploymentJourney() {
           transition={reduce ? { duration: 0 } : { delay: 3.2, duration: 0.4 }}
         >
           <p className="text-2xl font-semibold text-brand-charcoal">Total: under 2 hours</p>
-          <p className="mt-1 text-base text-brand-muted">from hardware to production-ready bench</p>
+          <p className="mt-1 text-base text-brand-muted">from hardware to field-ready deployment</p>
           <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
             <Link href="/dashboard" className="btn-primary">
               Open Dashboard
@@ -274,7 +280,6 @@ export function DeploymentJourney() {
             </Link>
           </div>
         </motion.div>
-      </div>
     </SectionShell>
   );
 }

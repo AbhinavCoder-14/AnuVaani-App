@@ -20,7 +20,7 @@ async def lifespan(app: FastAPI):
     await udp_server.start()
     await tcp_server.start()
     logger.info(
-        "AnuVanni backend ready — REST :%s | UDP :%s | TCP :%s",
+        "AnuVaani backend ready — REST :%s | UDP :%s | TCP :%s",
         settings.port,
         settings.udp_telemetry_port,
         settings.tcp_audio_port,

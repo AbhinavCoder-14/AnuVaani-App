@@ -21,17 +21,18 @@ export function HeroSection() {
             transition={{ delay: 0.2, duration: 0.5 }}
             className="mb-6 inline-flex rounded-full bg-brand-teal/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-brand-teal"
           >
-            Open Source · Edge-Native
+            ISRO PS 26172 · Open Source
           </motion.span>
 
           <Reveal>
-            <TwoToneHeadline muted="Wake word on the edge." emphasis="Cloud-ready in 165 ms." />
+            <TwoToneHeadline muted="Voice for rural India." emphasis="Sovereign on the edge." />
           </Reveal>
 
           <Reveal delay={0.1}>
             <p className="mt-6 max-w-[520px] text-base leading-relaxed text-brand-body md:text-lg">
-              Ultra-lightweight keyword spotting on a low-power microcontroller. Detect your custom
-              wake word locally, then stream audio to remote ASR with minimal latency and overhead.
+              Open-source keyword spotting for government kiosks, disaster alert nodes, and
+              agricultural IoT. Detect custom wake words in Hindi, Tamil, or Marathi locally — then
+              stream to ASR only when needed. Under 256 KB RAM. Under 165 ms latency.
             </p>
           </Reveal>
 

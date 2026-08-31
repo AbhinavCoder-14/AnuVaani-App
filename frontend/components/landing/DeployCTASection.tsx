@@ -13,7 +13,8 @@ export function DeployCTASection() {
           </div>
           <h2 className="font-display text-4xl text-brand-charcoal md:text-5xl">Deploy Now</h2>
           <p className="mx-auto mt-4 max-w-md text-base text-brand-muted">
-            Open-source voice infrastructure for rural India. Three steps. No experience necessary.
+            Open-source voice infrastructure for PS 26172 deployments. From unboxing a Pico to a
+            production-ready kiosk node — under two hours, no proprietary SDK.
           </p>
           <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
             <Link href="/dashboard" className="btn-primary">

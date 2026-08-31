@@ -6,17 +6,19 @@ interface SectionShellProps {
   background?: "white" | "surface";
   children: ReactNode;
   className?: string;
+  overlay?: ReactNode;
 }
 
 export const SectionShell = forwardRef<HTMLElement, SectionShellProps>(function SectionShell(
-  { id, number, background = "white", children, className = "" },
+  { id, number, background = "white", children, className = "", overlay },
   ref,
 ) {
   const bg = background === "surface" ? "bg-brand-surface" : "bg-white";
 
   return (
-    <section ref={ref} id={id} className={`section-pad ${bg} ${className}`}>
-      <div className="page-container">
+    <section ref={ref} id={id} className={`section-pad relative ${bg} ${className}`}>
+      {overlay}
+      <div className="page-container relative">
         {number && (
           <p className="mb-4 font-mono text-sm text-brand-faint">{number}</p>
         )}

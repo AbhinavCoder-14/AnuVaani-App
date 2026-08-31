@@ -1,4 +1,4 @@
-# AnuVanni Backend
+# AnuVaani Backend
 
 FastAPI server for edge voice activation: UDP telemetry, TCP audio, ASR, and voice intent.
 

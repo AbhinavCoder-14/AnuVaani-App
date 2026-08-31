@@ -32,17 +32,17 @@ export function ComparisonSection() {
   return (
     <SectionShell background="surface">
       <Reveal>
-        <TwoToneHeadline muted="Why AnuVanni" emphasis="wins on every count." />
+        <TwoToneHeadline muted="Why AnuVaani" emphasis="wins for rural India." />
       </Reveal>
 
       <Reveal delay={0.1}>
-        <div className="mt-12 overflow-x-auto rounded-card border border-gray-200 bg-white shadow-card">
+        <div className="section-stack overflow-x-auto rounded-card border border-gray-200 bg-white shadow-card">
           <table className="w-full min-w-[640px] text-left text-sm">
             <thead>
               <tr className="border-b border-gray-100 text-xs uppercase tracking-wider text-brand-muted">
                 <th className="p-4 font-semibold">Requirement</th>
                 <th className="border-l-4 border-brand-teal bg-brand-teal/5 p-4 font-semibold text-brand-charcoal">
-                  AnuVanni
+                  AnuVaani
                 </th>
                 <th className="p-4 font-semibold">Picovoice</th>
                 <th className="p-4 font-semibold">Google Assistant</th>

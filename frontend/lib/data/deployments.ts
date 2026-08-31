@@ -120,51 +120,52 @@ export const activationVolume: Record<
 };
 
 export const problemStats = [
-  { value: "<256 KB", label: "RAM footprint required during idle listening on the MCU" },
-  { value: "<10%", label: "CPU utilization ceiling while in continuous listen mode" },
-  { value: "165 ms", label: "Measured delta from keyword end to ASR stream start" },
-  { value: "0.8%", label: "False activation rate with 98.2% true-positive rate" },
+  { value: "<256 KB", label: "RAM footprint on a ₹600 Pico — affordable at 10,000+ kiosk scale" },
+  { value: "<10%", label: "CPU during always-on listening — weeks of runtime on solar power" },
+  { value: "165 ms", label: "Keyword-to-action latency vs 2–5 s full-cloud — life-or-death in flood alerts" },
+  { value: "99%", label: "Bandwidth saved by processing audio locally instead of streaming to cloud ASR" },
 ];
 
 export const caseStudies = [
   {
-    title: "Integration Lab Bench",
-    location: "Bengaluru, Karnataka",
-    quote: "Custom keyword Vikram validated on Pico 2 W with 162 ms average handoff latency.",
+    title: "Village E-Governance Kiosk",
+    location: "Satara, Maharashtra",
+    quote: "Marathi wake word Sahayata validated on solar-powered kiosk with 162 ms handoff — no internet required for keyword detection.",
     activations: 427,
     far: "0.9%",
     duration: "14d",
-    language: "Custom keyword",
-    imageLabel: "Lab bench: Pico 2 W integration rig with OLED status display",
+    language: "Marathi",
+    imageLabel: "Civic kiosk: voice-first land-record access for non-literate citizens",
   },
   {
-    title: "Ground Segment Rig",
-    location: "Sriharikota Test Facility",
-    quote: "Hands-free telemetry queries triggered with sub-200 ms keyword-to-ASR latency.",
+    title: "Flood Alert Monitoring Node",
+    location: "Gorakhpur, Uttar Pradesh",
+    quote: "Emergency keyword triggers local siren and SMS in under 200 ms — zero cloud dependency during satellite link dropout.",
     activations: 312,
     far: "0.7%",
     duration: "21d",
-    language: "Mission keyword",
-    imageLabel: "Ground rig: voice-activated console in EMI-shielded enclosure",
+    language: "Hindi",
+    imageLabel: "Disaster node: acoustic sensor with LoRaWAN and solar charging",
   },
   {
-    title: "Thermal Endurance Test",
-    location: "VSSC, Thiruvananthapuram",
-    quote: "Continuous listening held under 10% CPU for 14 days across 8 physical devices.",
+    title: "Agricultural Field Station",
+    location: "Hassan, Karnataka",
+    quote: "Kannada wake word Jaagroo held under 10% CPU for 14 days across 8 nodes on intermittent solar in monsoon season.",
     activations: 195,
     far: "0.7%",
     duration: "30d",
-    language: "Multi-keyword",
-    imageLabel: "Endurance test: low-power node under sustained thermal load",
+    language: "Kannada",
+    imageLabel: "Field node: soil-moisture rig with voice-activated status queries",
   },
 ];
 
 export const comparisonRows = [
   { feature: "Open-source stack", edge: "Yes", picovoice: "No", google: "No" },
-  { feature: "Custom keyword only", edge: "Yes", picovoice: "Partial", google: "No" },
+  { feature: "Custom Indic-language keyword", edge: "Yes", picovoice: "Partial", google: "No" },
   { feature: "Runs on <256 KB RAM", edge: "Yes", picovoice: "No", google: "No" },
-  { feature: "Idle CPU under 10%", edge: "Yes", picovoice: "No", google: "No" },
-  { feature: "Keyword-to-ASR latency", edge: "165 ms", picovoice: "N/A", google: "2-5 sec" },
+  { feature: "Works offline (no internet)", edge: "Yes", picovoice: "Yes", google: "No" },
+  { feature: "Keyword-to-action latency", edge: "165 ms", picovoice: "N/A", google: "2-5 sec" },
+  { feature: "No audio leaves device until wake", edge: "Yes", picovoice: "Yes", google: "No" },
   { feature: "Commercial SDK required", edge: "No", picovoice: "Yes", google: "Yes" },
 ];
 
@@ -472,9 +473,9 @@ export const devices: DeploymentDevice[] = [
       {
         date: "Aug 26, 11:40 AM",
         severity: "warning",
-        title: "Elevated false accepts in market noise",
+        title: "Elevated false accepts in ambient noise",
         impact: "FAR at 2.1%, above the 2.0% watch threshold.",
-        resolution: "Retrain with 50 more negative market-noise samples.",
+        resolution: "Retrain with 50 more negative samples from kiosk ambient audio.",
       },
     ],
     confusion: [
@@ -482,8 +483,8 @@ export const devices: DeploymentDevice[] = [
       { actual: "Actual market call", count: 4, kind: "confused" },
       { actual: "Actual background", count: 1, kind: "false" },
     ],
-    confusionPair: "Market calls mistaken for Unni Padi",
-    confusionRecommendation: "Retrain with 50 more negative samples from market audio.",
+    confusionPair: "Ambient kiosk sounds mistaken for Unni Padi",
+    confusionRecommendation: "Retrain with 50 more negative samples from kiosk ambient audio.",
   },
   {
     id: "HYD-007",
@@ -669,7 +670,7 @@ export const devices: DeploymentDevice[] = [
 ];
 
 export const languageInsight =
-  'Tamil has the highest FAR (2.1%) due to phonetic similarity between "Unni Padi" and common market sounds. Recommendation: retrain with 50 more negative samples.';
+  'Tamil has the highest FAR (2.1%) due to phonetic similarity between "Unni Padi" and common kiosk ambient sounds. Recommendation: retrain with 50 more negative samples from field recordings.';
 
 export function getActiveAlerts() {
   return devices.flatMap((device) =>
