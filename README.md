@@ -1,4 +1,4 @@
-# Edge Voice Activation System (AnuVanni)
+# Edge Voice Activation System (AnuVaani)
 
 An open-source hardware + AI stack for edge-based keyword spotting with cloud ASR and a real-time monitoring dashboard.
 
