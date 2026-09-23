@@ -338,7 +338,7 @@ export const devices: DeploymentDevice[] = [
   },
   {
     id: "BFS-004",
-    name: "Mission Control Simulator",
+    name: "Mission Control Terminal",
     city: "Bengaluru",
     state: "Karnataka",
     language: "English",

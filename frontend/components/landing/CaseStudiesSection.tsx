@@ -1,6 +1,15 @@
+import Image from "next/image";
+
 import { caseStudies } from "@/lib/data/deployments";
+import { DeployedModuleGallery } from "@/components/landing/DeployedModuleGallery";
 import { Reveal } from "@/components/shared/Reveal";
 import { SectionShell } from "@/components/shared/SectionShell";
+
+const caseStudyImages = [
+  "/images/device-modules/setup.jpg",
+  "/images/device-modules/live.jpg",
+  "/images/device-modules/quota.jpg",
+] as const;
 
 export function CaseStudiesSection() {
   return (
@@ -13,16 +22,26 @@ export function CaseStudiesSection() {
         </h2>
       </Reveal>
 
+      <DeployedModuleGallery />
+
       <div className="section-stack grid gap-6 md:grid-cols-2">
         {caseStudies.map((study, i) => (
-          <Reveal key={study.title} delay={i * 0.1} className={i === 2 ? "md:col-span-2 md:max-w-xl md:justify-self-center" : ""}>
+          <Reveal
+            key={study.title}
+            delay={i * 0.1}
+            className={i === 2 ? "md:col-span-2 md:max-w-xl md:justify-self-center" : ""}
+          >
             <article className="card-surface overflow-hidden">
-              <div
-                className="flex h-48 items-end bg-gradient-to-br from-brand-teal/20 via-brand-surface to-brand-mint/10 p-6 md:h-56"
-                role="img"
-                aria-label={study.imageLabel}
-              >
-                <p className="text-xs font-medium uppercase tracking-wider text-brand-muted">
+              <div className="relative h-48 md:h-56">
+                <Image
+                  src={caseStudyImages[i] ?? caseStudyImages[0]}
+                  alt={study.imageLabel}
+                  fill
+                  className="object-cover object-center"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+                <p className="absolute bottom-4 left-4 right-4 text-xs font-medium uppercase tracking-wider text-white/90">
                   {study.imageLabel}
                 </p>
               </div>

@@ -45,6 +45,7 @@
 }
 
 @layer components {
+  /* ── Landing page utilities (preserved) ──────────────── */
   .page-container {
     @apply mx-auto w-full max-w-page px-5 md:px-16;
   }
@@ -105,6 +106,71 @@
 
   .group:hover .marquee-track {
     animation-play-state: paused;
+  }
+
+  /* ── Operations console utilities ────────────────────── */
+  .ops-card {
+    @apply rounded-xl border border-ops-border bg-ops-card shadow-ops-sm;
+  }
+
+  .ops-card-interactive {
+    @apply ops-card transition-shadow duration-200 hover:shadow-ops-md;
+  }
+
+  .ops-badge {
+    @apply inline-flex items-center gap-1 rounded-md px-2 py-0.5 text-ops-caption font-medium;
+  }
+
+  .ops-badge-reporting {
+    @apply ops-badge bg-ops-green-light text-ops-green;
+  }
+
+  .ops-badge-stale {
+    @apply ops-badge bg-ops-amber-light text-ops-amber;
+  }
+
+  .ops-badge-offline {
+    @apply ops-badge bg-ops-red-light text-ops-red;
+  }
+
+  .ops-badge-unknown {
+    @apply ops-badge bg-gray-100 text-ops-text-secondary;
+  }
+
+  .ops-badge-simulation {
+    @apply ops-badge border border-ops-purple/20 bg-purple-50 text-ops-purple;
+  }
+
+  .ops-badge-live {
+    @apply ops-badge bg-ops-green-light text-ops-green;
+  }
+
+  .ops-table th {
+    @apply border-b border-ops-border bg-ops-bg px-4 py-3 text-left text-ops-caption font-semibold uppercase tracking-wider text-ops-text-secondary;
+  }
+
+  .ops-table td {
+    @apply border-b border-ops-border px-4 py-3 text-ops-body text-ops-text;
+  }
+
+  .ops-table tr:hover td {
+    @apply bg-ops-bg/50;
+  }
+
+  .ops-sidebar-link {
+    @apply flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-ops-text-secondary transition-colors hover:bg-ops-bg hover:text-ops-text;
+  }
+
+  .ops-sidebar-link-active {
+    @apply bg-ops-teal/5 text-ops-teal;
+  }
+
+  .ops-btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg border border-ops-border bg-ops-card px-3 py-2 text-sm font-medium text-ops-text transition-colors hover:bg-ops-bg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ops-teal focus-visible:ring-offset-2;
+  }
+
+  .ops-btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-ops-teal px-3 py-2 text-sm font-medium text-white transition-colors hover:bg-ops-teal/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ops-teal focus-visible:ring-offset-2;
   }
 }
 

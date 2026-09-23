@@ -13,6 +13,9 @@ export function SiteFooter() {
             <Link href="/#performance" className="hover:text-white">
               Performance
             </Link>
+            <Link href="/demo" className="hover:text-white">
+              Demo Video
+            </Link>
             <Link href="/dashboard" className="hover:text-white">
               Dashboard
             </Link>

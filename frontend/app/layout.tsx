@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { JetBrains_Mono, Urbanist } from "next/font/google";
+import { Inter, JetBrains_Mono } from "next/font/google";
 
 import "./globals.css";
 
-const urbanist = Urbanist({
-  variable: "--font-urbanist",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
   display: "swap",
 });
@@ -28,7 +28,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${urbanist.variable} ${jetbrains.variable}`}>
+      <body className={`${inter.variable} ${jetbrains.variable}`}>
         {children}
       </body>
     </html>

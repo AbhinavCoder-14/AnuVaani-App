@@ -5,6 +5,7 @@ import { Menu } from "lucide-react";
 import { useEffect, useState } from "react";
 
 const navLinks = [
+  { href: "/demo", label: "Demo Video" },
   { href: "/#features", label: "Features" },
   { href: "/dashboard", label: "Dashboard" },
   { href: "/#performance", label: "Performance" },

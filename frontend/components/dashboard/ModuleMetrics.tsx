@@ -1,8 +1,11 @@
 "use client";
 
 import type { DeviceTelemetry } from "@/lib/data/device-demo";
+import type { LiveDeviceTelemetry } from "@/hooks/useDeviceTelemetry";
 import { DEVICE_LIMITS } from "@/lib/data/device-demo";
 import { Activity, Cpu, HardDrive, Mic, Timer } from "lucide-react";
+
+type TelemetryProps = DeviceTelemetry | LiveDeviceTelemetry;
 
 function MetricBar({
   label,
@@ -30,7 +33,7 @@ function MetricBar({
         <>
           <div className="mt-3 h-2 overflow-hidden rounded-full bg-[#E5E7EB]">
             <div
-              className="h-full rounded-full bg-brand-teal"
+              className="h-full rounded-full bg-brand-teal transition-all duration-700 ease-out"
               style={{ width: `${pct}%` }}
             />
           </div>
@@ -41,7 +44,7 @@ function MetricBar({
   );
 }
 
-export function QuotaMetrics({ telemetry }: { telemetry: DeviceTelemetry }) {
+export function QuotaMetrics({ telemetry }: { telemetry: TelemetryProps }) {
   return (
     <section className="dash-card p-5 md:p-6">
       <div className="mb-5 flex items-start justify-between gap-4">
@@ -51,8 +54,8 @@ export function QuotaMetrics({ telemetry }: { telemetry: DeviceTelemetry }) {
           <p className="text-sm text-brand-muted">On-device resource usage</p>
         </div>
         <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-mint/15 px-2.5 py-1 text-[11px] font-semibold text-brand-teal">
-          <span className="h-1.5 w-1.5 rounded-full bg-brand-teal" />
-          Online
+          <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-brand-teal" />
+          Live
         </span>
       </div>
 
@@ -86,14 +89,30 @@ export function QuotaMetrics({ telemetry }: { telemetry: DeviceTelemetry }) {
   );
 }
 
-export function LiveStatusCard({ telemetry }: { telemetry: DeviceTelemetry }) {
+export function LiveStatusCard({ telemetry }: { telemetry: TelemetryProps }) {
+  const lifecycle = "lifecycle" in telemetry ? telemetry.lifecycle : "listening";
+
+  const stateLabel =
+    lifecycle === "listening"
+      ? "Listening"
+      : lifecycle === "wake_detected"
+        ? "Wake detected"
+        : lifecycle === "streaming"
+          ? "Streaming PCM"
+          : "ASR processing";
+
+  const stateColor =
+    lifecycle === "listening"
+      ? "bg-brand-teal/10 text-brand-teal"
+      : "bg-[#f5d547]/20 text-[#8a6d00]";
+
   return (
     <section className="dash-card p-5 md:p-6">
       <p className="text-xs font-semibold uppercase tracking-wider text-brand-teal">Module · LIVE</p>
       <div className="mt-4 flex flex-wrap items-center gap-4">
-        <div className="inline-flex items-center gap-2 rounded-full bg-brand-teal/10 px-4 py-2 text-sm font-semibold text-brand-teal">
+        <div className={`inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold transition-colors ${stateColor}`}>
           <Mic className="h-4 w-4" />
-          Listening
+          {stateLabel}
         </div>
         <div className="text-sm text-brand-muted">
           Waiting for <span className="font-semibold text-brand-charcoal">marvin</span>
@@ -122,7 +141,7 @@ export function LiveStatusCard({ telemetry }: { telemetry: DeviceTelemetry }) {
   );
 }
 
-export function ResourceSyncStrip({ telemetry }: { telemetry: DeviceTelemetry }) {
+export function ResourceSyncStrip({ telemetry }: { telemetry: TelemetryProps }) {
   return (
     <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
       {[
@@ -137,7 +156,7 @@ export function ResourceSyncStrip({ telemetry }: { telemetry: DeviceTelemetry })
           </div>
           <div>
             <p className="text-[11px] font-medium uppercase tracking-wide text-brand-muted">{label}</p>
-            <p className="text-lg font-bold tabular-nums text-brand-charcoal">{value}</p>
+            <p className="text-lg font-bold tabular-nums text-brand-charcoal transition-all duration-500">{value}</p>
             <p className="text-[11px] text-brand-muted">{sub}</p>
           </div>
         </div>

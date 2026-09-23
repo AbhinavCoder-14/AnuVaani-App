@@ -2,7 +2,6 @@
 
 import { DashboardPreview } from "@/components/dashboard/DashboardPreview";
 import { SectionShell } from "@/components/shared/SectionShell";
-import { aggregateMetrics } from "@/lib/data/deployments";
 import { secondaryFeatures } from "@/lib/data/features";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { Cpu, Plus, Shield } from "lucide-react";
@@ -256,44 +255,6 @@ export function DashboardShowcaseSection() {
                 }}
               >
                 <DashboardPreview />
-              </div>
-
-              <div
-                className="absolute -bottom-4 left-0 z-10 hidden w-[38%] max-w-[220px] overflow-hidden rounded-[40px] border-[11px] border-black bg-white shadow-[0_30px_45px_rgba(0,0,0,0.45)] md:block lg:-bottom-8 lg:left-[-4%]"
-                style={{ transform: "rotateY(8deg) rotateZ(-3deg)" }}
-              >
-                <div className="bg-brand-charcoal px-4 py-2.5">
-                  <p className="text-[11px] font-semibold text-white">AnuVaani Mobile</p>
-                </div>
-                <div className="space-y-3 p-4">
-                  <div>
-                    <p className="text-[10px] text-brand-muted">Activations today</p>
-                    <p className="text-xl font-bold text-brand-charcoal">
-                      {aggregateMetrics.activationsToday.toLocaleString()}
-                    </p>
-                  </div>
-                  <div className="flex h-20 items-end gap-1 px-1">
-                    {[40, 65, 45, 80, 55, 90, 70, 95, 60, 85].map((h, i) => (
-                      <div
-                        key={i}
-                        className="flex-1 rounded-sm bg-brand-teal"
-                        style={{ height: `${h}%` }}
-                      />
-                    ))}
-                  </div>
-                  <div className="grid grid-cols-2 gap-2">
-                    <div className="rounded-lg bg-brand-surface-cool p-2.5">
-                      <p className="text-[9px] text-brand-muted">Latency</p>
-                      <p className="text-sm font-bold">{aggregateMetrics.avgLatencyMs} ms</p>
-                    </div>
-                    <div className="rounded-lg bg-brand-surface-cool p-2.5">
-                      <p className="text-[9px] text-brand-muted">Online</p>
-                      <p className="text-sm font-bold">
-                        {aggregateMetrics.devicesOnline}/{aggregateMetrics.devicesTotal}
-                      </p>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
           </motion.div>
